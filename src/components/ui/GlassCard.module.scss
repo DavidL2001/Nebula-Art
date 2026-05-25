@@ -1,0 +1,25 @@
+@import '../../styles/variables';
+
+.card {
+  @include glass;
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  position: relative;
+  transition: border-color var(--transition-base), box-shadow var(--transition-base);
+
+  @include respond-to('md') { padding: var(--space-6); }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, transparent 60%);
+  }
+}
+
+.glow-cyan    { border-color: rgba(0,245,255,0.25);   box-shadow: 0 0 30px rgba(0,245,255,0.08); }
+.glow-magenta { border-color: rgba(255,0,200,0.25);   box-shadow: 0 0 30px rgba(255,0,200,0.08); }
+.glow-violet  { border-color: rgba(155,92,255,0.25);  box-shadow: 0 0 30px rgba(155,92,255,0.08); }
+.glow-none    {}

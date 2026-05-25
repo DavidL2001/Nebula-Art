@@ -1,0 +1,97 @@
+@import '../../styles/variables';
+
+.wrapper { display: flex; flex-direction: column; gap: var(--space-6); }
+.section  { display: flex; flex-direction: column; gap: var(--space-3); }
+
+.sectionLabel {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: var(--color-text-muted);
+}
+
+// Mobile: 4 cols. Wider: keep 4 cols but bigger cells
+.styleGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-2);
+}
+
+.styleBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: var(--space-2) var(--space-1);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  -webkit-tap-highlight-color: transparent;
+
+  @include respond-to('sm') { padding: var(--space-3) var(--space-2); }
+
+  &.active {
+    border-color: var(--color-cyan);
+    background: rgba(0,245,255,0.08);
+    box-shadow: 0 0 16px rgba(0,245,255,0.15);
+    .styleIcon  { text-shadow: 0 0 10px var(--color-cyan); color: var(--color-cyan); }
+    .styleLabel { color: var(--color-cyan); }
+  }
+  &:hover:not(.active) {
+    border-color: rgba(255,255,255,0.2);
+    background: var(--color-surface-2);
+  }
+  &:active { transform: scale(0.95); }
+}
+
+.styleIcon {
+  font-size: 14px;
+  color: var(--color-text-muted);
+  transition: all var(--transition-fast);
+
+  @include respond-to('sm') { font-size: 16px; }
+}
+
+.styleLabel {
+  font-family: var(--font-mono);
+  font-size: 7px;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  transition: color var(--transition-fast);
+  text-align: center;
+
+  @include respond-to('sm') { font-size: 9px; letter-spacing: 0.06em; }
+}
+
+.moodGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.moodBtn {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  padding: 5px 12px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  -webkit-tap-highlight-color: transparent;
+
+  &:hover  { color: var(--color-text); border-color: rgba(255,255,255,0.2); }
+  &:active { transform: scale(0.95); }
+
+  &.activeMood {
+    color: var(--color-magenta);
+    border-color: var(--color-magenta);
+    background: rgba(255,0,200,0.08);
+    box-shadow: 0 0 12px rgba(255,0,200,0.15);
+  }
+}

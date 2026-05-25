@@ -1,0 +1,178 @@
+@import '../styles/variables';
+
+.page {
+  min-height: 100vh;
+  background: var(--color-bg);
+  position: relative;
+  overflow-x: hidden;
+}
+
+.bgGrid {
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,245,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,245,255,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.main {
+  position: relative;
+  z-index: 1;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 80px var(--space-4) var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+
+  @include respond-to('md') {
+    padding: 100px var(--space-8) var(--space-8);
+    gap: var(--space-8);
+  }
+}
+
+.header { text-align: center; }
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 6vw, 52px);
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  color: var(--color-text);
+  line-height: 1;
+
+  @include respond-to('md') { letter-spacing: 0.2em; }
+}
+.titleAccent {
+  color: var(--color-cyan);
+  filter: drop-shadow(0 0 16px var(--color-cyan));
+}
+.subtitle {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--color-text-muted);
+  margin-top: var(--space-3);
+
+  @include respond-to('md') {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+  }
+}
+
+// ─── Layout: mobile = stack, desktop = sidebar + canvas ──────────
+.layout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+
+  @include respond-to('lg') {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: var(--space-6);
+    align-items: start;
+  }
+
+  @include respond-to('xl') {
+    grid-template-columns: 400px 1fr;
+  }
+}
+
+// ─── Mobile tab switcher (shows controls OR canvas) ──────────────
+.mobileTabs {
+  display: flex;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 3px;
+  gap: 3px;
+
+  @include respond-to('lg') { display: none; }
+}
+
+.mobileTab {
+  flex: 1;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  background: none;
+  border: none;
+  border-radius: calc(var(--radius-md) - 3px);
+  padding: var(--space-2) var(--space-3);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+
+  &.activeTab {
+    background: var(--color-surface-2);
+    color: var(--color-cyan);
+    box-shadow: 0 0 12px rgba(0,245,255,0.1);
+  }
+}
+
+// ─── Controls panel ───────────────────────────────────────────────
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+// On mobile hide controls when canvas tab active
+.controlsHidden {
+  @media (max-width: 1023px) { display: none; }
+}
+
+.cardLabel {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-4);
+}
+
+.sliders {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+// ─── Canvas section ───────────────────────────────────────────────
+.canvasSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+// On mobile hide canvas when controls tab active
+.canvasHidden {
+  @media (max-width: 1023px) { display: none; }
+}
+
+// ─── Action buttons ───────────────────────────────────────────────
+.actions {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+
+  @include respond-to('md') { gap: var(--space-3); }
+}
+
+// ─── Stats bar ────────────────────────────────────────────────────
+.statsBar {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--color-text-muted);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-surface);
+  border-radius: var(--radius-sm);
+  b { color: var(--color-cyan); font-weight: 500; }
+
+  @include respond-to('md') { gap: var(--space-6); }
+}

@@ -1,0 +1,78 @@
+@import '../../styles/variables';
+
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-4);
+  background: rgba(5,5,8,0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--color-border);
+
+  @include respond-to('md') {
+    padding: var(--space-4) var(--space-8);
+  }
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  text-decoration: none;
+}
+.logoIcon {
+  font-size: 16px;
+  color: var(--color-cyan);
+  filter: drop-shadow(0 0 8px var(--color-cyan));
+
+  @include respond-to('md') { font-size: 18px; }
+}
+.logoText {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--color-text);
+
+  @include respond-to('md') { font-size: 14px; }
+}
+.logoAccent { color: var(--color-cyan); }
+
+.links {
+  display: flex;
+  gap: var(--space-4);
+
+  @include respond-to('md') { gap: var(--space-6); }
+}
+
+.link {
+  position: relative;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  padding-bottom: 4px;
+  transition: color var(--transition-fast);
+
+  @include respond-to('md') {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+  }
+
+  &:hover { color: var(--color-text); }
+  &.active { color: var(--color-cyan); }
+}
+
+.underline {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: var(--color-cyan);
+  box-shadow: 0 0 8px var(--color-cyan);
+}

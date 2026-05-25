@@ -1,0 +1,117 @@
+@import '../../styles/variables';
+
+.wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/3;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--color-bg-2);
+  border: 1px solid var(--color-border);
+}
+
+.ambientGlow {
+  position: absolute;
+  inset: -50%;
+  opacity: 0.2;
+  pointer-events: none;
+  transition: background 0.8s ease;
+}
+
+.canvas {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(5,5,8,0.75);
+  backdrop-filter: blur(4px);
+}
+
+// Idle state
+.idleContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+.idleIcon {
+  font-size: 40px;
+  color: var(--color-cyan);
+  filter: drop-shadow(0 0 16px var(--color-cyan));
+}
+.idleText {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--color-text-muted);
+  text-align: center;
+  max-width: 220px;
+}
+
+// Loading
+.loadingContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+.progressRing {
+  position: relative;
+  width: 80px; height: 80px;
+  svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+}
+.trackCircle {
+  fill: none;
+  stroke: rgba(255,255,255,0.08);
+  stroke-width: 3;
+}
+.fillCircle {
+  fill: none;
+  stroke: var(--color-cyan);
+  stroke-width: 3;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 6px var(--color-cyan));
+  transition: stroke-dashoffset 0.3s ease;
+}
+.progressPct {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--color-cyan);
+}
+.loadingLabel {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: var(--color-text-muted);
+}
+
+// Corner decorations
+.corner {
+  position: absolute;
+  width: 16px; height: 16px;
+  pointer-events: none;
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    background: var(--color-cyan);
+    box-shadow: 0 0 6px var(--color-cyan);
+  }
+  &::before { width: 100%; height: 1.5px; top: 0; }
+  &::after  { width: 1.5px; height: 100%; top: 0; }
+}
+.tl { top: 8px; left: 8px; }
+.tr { top: 8px; right: 8px; transform: scaleX(-1); }
+.bl { bottom: 8px; left: 8px; transform: scaleY(-1); }
+.br { bottom: 8px; right: 8px; transform: scale(-1); }

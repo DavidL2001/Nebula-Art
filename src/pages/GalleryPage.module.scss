@@ -1,0 +1,253 @@
+@import '../styles/variables';
+
+.page {
+  min-height: 100vh;
+  background: var(--color-bg);
+  position: relative;
+  overflow: hidden;
+}
+
+.main {
+  position: relative;
+  z-index: 1;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 80px var(--space-4) var(--space-8);
+
+  @include respond-to('md') {
+    padding: 100px var(--space-8) var(--space-12);
+  }
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.header { text-align: center; }
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 4vw, 48px);
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  color: var(--color-text);
+}
+
+.accent {
+  color: var(--color-violet);
+  filter: drop-shadow(0 0 16px var(--color-violet));
+}
+
+.subtitle {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--color-text-muted);
+  margin-top: var(--space-3);
+}
+
+// Filter bar
+.filterBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.filters {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.filterBtn {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  padding: 5px 14px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  &:hover { color: var(--color-text); border-color: rgba(255,255,255,0.2); }
+}
+
+.activeFilter {
+  color: var(--color-violet);
+  border-color: rgba(155,92,255,0.5);
+  background: rgba(155,92,255,0.1);
+  box-shadow: 0 0 12px rgba(155,92,255,0.15);
+}
+
+// Grid
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--space-6);
+}
+
+// Card
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color var(--transition-base), box-shadow var(--transition-base);
+  &:hover {
+    border-color: rgba(155,92,255,0.3);
+    box-shadow: 0 8px 32px rgba(155,92,255,0.1);
+  }
+}
+
+.cardCanvas {
+  position: relative;
+  aspect-ratio: 4/3;
+  background: var(--color-bg-2);
+  overflow: hidden;
+}
+
+.thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.noThumb {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  color: var(--color-text-muted);
+  span { font-size: 28px; color: var(--color-violet); }
+  p { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; }
+}
+
+.cardOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlayActions {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.overlayBtn {
+  width: 40px; height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: var(--radius-sm);
+  color: var(--color-text);
+  font-size: 16px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  &:hover { background: rgba(255,255,255,0.15); transform: scale(1.1); }
+  &.liked { color: var(--color-magenta); border-color: var(--color-magenta); }
+}
+
+.deleteBtn:hover {
+  background: rgba(255,50,50,0.2) !important;
+  border-color: rgba(255,80,80,0.5) !important;
+  color: #ff6060 !important;
+}
+
+.cardMeta {
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.metaTop {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.styleBadge {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-cyan);
+  border: 1px solid rgba(0,245,255,0.25);
+  background: rgba(0,245,255,0.06);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+.moodBadge {
+  @extend .styleBadge;
+  color: var(--color-magenta);
+  border-color: rgba(255,0,200,0.25);
+  background: rgba(255,0,200,0.06);
+}
+
+.prompt {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--color-text-muted);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.date {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--color-text-muted);
+  opacity: 0.6;
+}
+
+// Empty state
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-16) 0;
+  text-align: center;
+}
+
+.emptyIcon {
+  font-size: 48px;
+  color: var(--color-violet);
+  filter: drop-shadow(0 0 20px var(--color-violet));
+}
+
+.emptyTitle {
+  font-family: var(--font-display);
+  font-size: 18px;
+  letter-spacing: 0.1em;
+  color: var(--color-text);
+}
+
+.emptyText {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-text-muted);
+  max-width: 300px;
+  line-height: 1.7;
+}
+
+.noMatch {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-text-muted);
+  text-align: center;
+  padding: var(--space-12) 0;
+}

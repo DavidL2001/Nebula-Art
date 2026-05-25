@@ -1,0 +1,75 @@
+// ─── Color System ────────────────────────────────────────────────
+:root {
+  // Core palette
+  --color-bg:          #050508;
+  --color-bg-2:        #0a0a12;
+  --color-surface:     rgba(255,255,255,0.04);
+  --color-surface-2:   rgba(255,255,255,0.08);
+  --color-border:      rgba(255,255,255,0.08);
+
+  // Neon accents
+  --color-cyan:        #00f5ff;
+  --color-magenta:     #ff00c8;
+  --color-violet:      #9b5cff;
+  --color-gold:        #ffd700;
+
+  // Text
+  --color-text:        #e8e8f0;
+  --color-text-muted:  rgba(232,232,240,0.45);
+
+  // Glow
+  --glow-cyan:         0 0 20px rgba(0,245,255,0.5), 0 0 60px rgba(0,245,255,0.2);
+  --glow-magenta:      0 0 20px rgba(255,0,200,0.5), 0 0 60px rgba(255,0,200,0.2);
+  --glow-violet:       0 0 20px rgba(155,92,255,0.5), 0 0 60px rgba(155,92,255,0.2);
+
+  // Typography
+  --font-display:      'Orbitron', sans-serif;
+  --font-body:         'DM Sans', sans-serif;
+  --font-mono:         'JetBrains Mono', monospace;
+
+  // Spacing
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  // Radii
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+
+  // Transitions
+  --transition-fast:   150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base:   280ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow:   500ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+// ─── SCSS helpers ────────────────────────────────────────────────
+$breakpoints: (
+  'sm': 640px,
+  'md': 768px,
+  'lg': 1024px,
+  'xl': 1280px,
+  '2xl': 1536px,
+);
+
+@mixin respond-to($bp) {
+  @media (min-width: map-get($breakpoints, $bp)) { @content; }
+}
+
+@mixin glass {
+  background: var(--color-surface);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid var(--color-border);
+}
+
+@mixin neon-text($color) {
+  color: $color;
+  text-shadow: 0 0 10px $color, 0 0 30px #{$color}88;
+}

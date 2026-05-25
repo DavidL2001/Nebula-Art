@@ -1,0 +1,62 @@
+@import '../../styles/variables';
+
+.wrapper { display: flex; flex-direction: column; gap: var(--space-2); }
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.value {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  min-width: 36px;
+  text-align: right;
+
+  &.cyan    { color: var(--color-cyan);    text-shadow: 0 0 8px var(--color-cyan); }
+  &.magenta { color: var(--color-magenta); text-shadow: 0 0 8px var(--color-magenta); }
+  &.violet  { color: var(--color-violet);  text-shadow: 0 0 8px var(--color-violet); }
+  &.gold    { color: var(--color-gold);    text-shadow: 0 0 8px var(--color-gold); }
+}
+
+.track {
+  position: relative;
+  height: 4px;
+  background: rgba(255,255,255,0.08);
+  border-radius: var(--radius-full);
+}
+
+.fill {
+  position: absolute;
+  top: 0; left: 0; height: 100%;
+  border-radius: var(--radius-full);
+  pointer-events: none;
+  transition: width 0.05s;
+
+  &.cyan    { background: var(--color-cyan);    box-shadow: 0 0 8px var(--color-cyan); }
+  &.magenta { background: var(--color-magenta); box-shadow: 0 0 8px var(--color-magenta); }
+  &.violet  { background: var(--color-violet);  box-shadow: 0 0 8px var(--color-violet); }
+  &.gold    { background: var(--color-gold);    box-shadow: 0 0 8px var(--color-gold); }
+}
+
+// Bigger touch target on mobile
+.input {
+  position: absolute;
+  inset: -10px 0;
+  width: 100%;
+  opacity: 0;
+  cursor: pointer;
+  height: 24px;
+  margin: 0;
+  touch-action: pan-x;
+}
